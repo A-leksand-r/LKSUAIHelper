@@ -1,0 +1,6 @@
+<persistence>
+    <persistence-unit name="JavaRush">
+        <description>Persistence Unit For test</description>
+        <class>com.example.lksuaihelper.model.Profiles</class>
+    </persistence-unit>
+</persistence>

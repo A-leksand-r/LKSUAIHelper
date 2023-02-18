@@ -3,34 +3,35 @@ package com.example.lksuaihelper.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
-public class Profiles {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "lastname")
+    //@Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "name")
+    //@Column(name = "name")
     private String name;
 
+    //@Column(name = "patronymic")
     private String patronymic;
 
-    @Column(email = "email")
+    //@Column(name = "email")
     private String email;
 
-    @Column(login = "login")
+    //@Column(name = "login")
     private String login;
 
-    @Column(password = "password")
+    //@Column(name = "password")
     private String password;
 
-    public Profiles() {
+    public User() {
 
     }
 
-    public Profiles(String lastname, String name, String patronymic, String email, String login, String password) {
+    public User(String lastname, String name, String patronymic, String email, String login, String password) {
         this.lastname = lastname;
         this.name = name;
         this.patronymic = patronymic;

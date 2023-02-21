@@ -1,23 +1,28 @@
 package com.example.lksuaihelper.model;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
-public class Role implements GrantedAuthority {
-
+@Table(name = "roles")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Role {
     @Id
     private Long id;
+
     private String name;
 
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
-    public Role() {}
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn("user_id"))
+    private List<User> users;
 
     public Role(Long id) {
         this.id = id;
@@ -26,34 +31,5 @@ public class Role implements GrantedAuthority {
     public Role(Long id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    @Override
-    public String getAuthority() {
-        return getName();
     }
 }

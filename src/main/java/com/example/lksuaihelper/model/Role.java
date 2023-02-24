@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,9 +21,8 @@ public class Role {
 
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn("user_id"))
-    private List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
     public Role(Long id) {
         this.id = id;
